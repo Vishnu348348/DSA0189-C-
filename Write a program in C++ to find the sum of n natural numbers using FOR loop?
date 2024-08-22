@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, sum = 0;
+
+    // Ask the user for the number of natural numbers to sum up
+    cout << "Enter a positive integer: ";
+    cin >> n;
+
+    // Use a for loop to calculate the sum of natural numbers
+    for(int i = 1; i <= n; i++) {
+        sum += i;
+    }
+
+    // Output the result
+    cout << "The sum of the first " << n << " natural numbers is: " << sum << endl;
+
+    return 0;
+}
