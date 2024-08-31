@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <cmath>
+
+// Function to check if a string represents a valid integer
+bool isValidInteger(const std::string& str) {
+    if (str.empty() || (str[0] == '-' && str.length() == 1)) {
+        return false;
+    }
+    for (char c : str) {
+        if (!std::isdigit(c) && !(c == '-' && &c == &str[0])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Function to check if a number is prime
+bool isPrime(int num) {
+    if (num <= 1) return false;
+    if (num <= 3) return true;
+    if (num % 2 == 0 || num % 3 == 0) return false;
+    for (int i = 5; i * i <= num; i += 6) {
+        if (num % i == 0 || num % (i + 2) == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    std::string input;
+    
+    std::cout << "Enter a number: ";
+    std::getline(std::cin, input);
+    
+    // Validate the input
+    if (isValidInteger(input)) {
+        int number = std::stoi(input);
+        
+        if (isPrime(number)) {
+            std::cout << number << " is prime" << std::endl;
+        } else {
+            std::cout << number << " is not prime" << std::endl;
+        }
+    } else {
+        std::cout << "Invalid input. Please enter a valid integer." << std::endl;
+    }
+    
+    return 0;
+}
