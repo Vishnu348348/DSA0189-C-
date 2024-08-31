@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <limits>
+
+// Function to get a valid age input from the user
+int getPerson() {
+    std::string input;
+    int age = -1;
+    bool valid = false;
+
+    while (!valid) {
+        std::cout << "Enter your age: ";
+        std::getline(std::cin, input);
+
+        try {
+            // Try converting the input to an integer
+            size_t pos;
+            age = std::stoi(input, &pos);
+            // Check if the entire string was converted
+            if (pos != input.size()) {
+                throw std::invalid_argument("Invalid input");
+            }
+            valid = true;
+        } catch (std::exception& e) {
+            std::cout << "Invalid input. Please enter a valid age." << std::endl;
+        }
+    }
+
+    return age;
+}
+
+int main() {
+    int age = getPerson();
+
+    if (age < 0) {
+        std::cout << "Age cannot be negative. Please enter a valid age." << std::endl;
+    } else if (age >= 18) {
+        std::cout << "You are eligible to vote." << std::endl;
+    } else {
+        int yearsLeft = 18 - age;
+        std::cout << "You are allowed to vote after " << yearsLeft << " years." << std::endl;
+    }
+
+    return 0;
+}
